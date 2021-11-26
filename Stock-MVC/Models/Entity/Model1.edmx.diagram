@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05ead8d462574e1884932e552f03ff28" Name="Diagram1">
+        <EntityTypeShape EntityType="StockProjectMVCModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockProjectMVCModel.TBL_KATEQORIYALAR" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockProjectMVCModel.TBL_MEHSULLAR" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockProjectMVCModel.TBL_MUSTERILER" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockProjectMVCModel.TBL_SATISLAR" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="StockProjectMVCModel.FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR" ManuallyRouted="false" />
+        <AssociationConnector Association="StockProjectMVCModel.FK_TBL_SATISLAR_TBL_MEHSULLAR" ManuallyRouted="false" />
+        <AssociationConnector Association="StockProjectMVCModel.FK_TBL_SATISLAR_TBL_MUSTERILER" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

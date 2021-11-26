@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StockProjectMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBL_KATEQORIYALAR">
+          <Key>
+            <PropertyRef Name="KATEQORIYAID" />
+          </Key>
+          <Property Name="KATEQORIYAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KATEQORIYAAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_MEHSULLAR">
+          <Key>
+            <PropertyRef Name="MEHSULID" />
+          </Key>
+          <Property Name="MEHSULID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEHSULAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="MARKA" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEHSULKATEQORIYA" Type="int" />
+          <Property Name="QIYMET" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="STOK" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TBL_MUSTERILER">
+          <Key>
+            <PropertyRef Name="MUSTERIID" />
+          </Key>
+          <Property Name="MUSTERIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MUSTERIAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="MUSTERISOYAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_SATISLAR">
+          <Key>
+            <PropertyRef Name="SATISID" />
+          </Key>
+          <Property Name="SATISID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEHSUL" Type="int" />
+          <Property Name="MUSTERI" Type="int" />
+          <Property Name="EDED" Type="tinyint" />
+          <Property Name="QIYMET" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR">
+          <End Role="TBL_KATEQORIYALAR" Type="Self.TBL_KATEQORIYALAR" Multiplicity="0..1" />
+          <End Role="TBL_MEHSULLAR" Type="Self.TBL_MEHSULLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEQORIYALAR">
+              <PropertyRef Name="KATEQORIYAID" />
+            </Principal>
+            <Dependent Role="TBL_MEHSULLAR">
+              <PropertyRef Name="MEHSULKATEQORIYA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_MEHSULLAR">
+          <End Role="TBL_MEHSULLAR" Type="Self.TBL_MEHSULLAR" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MEHSULLAR">
+              <PropertyRef Name="MEHSULID" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="MEHSUL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_MUSTERILER">
+          <End Role="TBL_MUSTERILER" Type="Self.TBL_MUSTERILER" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MUSTERILER">
+              <PropertyRef Name="MUSTERIID" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="MUSTERI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockProjectMVCModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_KATEQORIYALAR" EntityType="Self.TBL_KATEQORIYALAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MEHSULLAR" EntityType="Self.TBL_MEHSULLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MUSTERILER" EntityType="Self.TBL_MUSTERILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SATISLAR" EntityType="Self.TBL_SATISLAR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR" Association="Self.FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR">
+            <End Role="TBL_KATEQORIYALAR" EntitySet="TBL_KATEQORIYALAR" />
+            <End Role="TBL_MEHSULLAR" EntitySet="TBL_MEHSULLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MEHSULLAR" Association="Self.FK_TBL_SATISLAR_TBL_MEHSULLAR">
+            <End Role="TBL_MEHSULLAR" EntitySet="TBL_MEHSULLAR" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MUSTERILER" Association="Self.FK_TBL_SATISLAR_TBL_MUSTERILER">
+            <End Role="TBL_MUSTERILER" EntitySet="TBL_MUSTERILER" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockProjectMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBL_KATEQORIYALAR">
+          <Key>
+            <PropertyRef Name="KATEQORIYAID" />
+          </Key>
+          <Property Name="KATEQORIYAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KATEQORIYAAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_MEHSULLAR" Relationship="Self.FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR" FromRole="TBL_KATEQORIYALAR" ToRole="TBL_MEHSULLAR" />
+        </EntityType>
+        <EntityType Name="TBL_MEHSULLAR">
+          <Key>
+            <PropertyRef Name="MEHSULID" />
+          </Key>
+          <Property Name="MEHSULID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEHSULAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MARKA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MEHSULKATEQORIYA" Type="Int32" />
+          <Property Name="QIYMET" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="STOK" Type="Byte" />
+          <NavigationProperty Name="TBL_KATEQORIYALAR" Relationship="Self.FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR" FromRole="TBL_MEHSULLAR" ToRole="TBL_KATEQORIYALAR" />
+          <NavigationProperty Name="TBL_SATISLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_MEHSULLAR" FromRole="TBL_MEHSULLAR" ToRole="TBL_SATISLAR" />
+        </EntityType>
+        <EntityType Name="TBL_MUSTERILER">
+          <Key>
+            <PropertyRef Name="MUSTERIID" />
+          </Key>
+          <Property Name="MUSTERIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MUSTERIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERISOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_SATISLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_MUSTERILER" FromRole="TBL_MUSTERILER" ToRole="TBL_SATISLAR" />
+        </EntityType>
+        <EntityType Name="TBL_SATISLAR">
+          <Key>
+            <PropertyRef Name="SATISID" />
+          </Key>
+          <Property Name="SATISID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEHSUL" Type="Int32" />
+          <Property Name="MUSTERI" Type="Int32" />
+          <Property Name="EDED" Type="Byte" />
+          <Property Name="QIYMET" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TBL_MEHSULLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_MEHSULLAR" FromRole="TBL_SATISLAR" ToRole="TBL_MEHSULLAR" />
+          <NavigationProperty Name="TBL_MUSTERILER" Relationship="Self.FK_TBL_SATISLAR_TBL_MUSTERILER" FromRole="TBL_SATISLAR" ToRole="TBL_MUSTERILER" />
+        </EntityType>
+        <Association Name="FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR">
+          <End Role="TBL_KATEQORIYALAR" Type="Self.TBL_KATEQORIYALAR" Multiplicity="0..1" />
+          <End Role="TBL_MEHSULLAR" Type="Self.TBL_MEHSULLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEQORIYALAR">
+              <PropertyRef Name="KATEQORIYAID" />
+            </Principal>
+            <Dependent Role="TBL_MEHSULLAR">
+              <PropertyRef Name="MEHSULKATEQORIYA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_MEHSULLAR">
+          <End Role="TBL_MEHSULLAR" Type="Self.TBL_MEHSULLAR" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MEHSULLAR">
+              <PropertyRef Name="MEHSULID" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="MEHSUL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_MUSTERILER">
+          <End Role="TBL_MUSTERILER" Type="Self.TBL_MUSTERILER" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MUSTERILER">
+              <PropertyRef Name="MUSTERIID" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="MUSTERI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockProjectMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TBL_KATEQORIYALAR" EntityType="Self.TBL_KATEQORIYALAR" />
+          <EntitySet Name="TBL_MEHSULLAR" EntityType="Self.TBL_MEHSULLAR" />
+          <EntitySet Name="TBL_MUSTERILER" EntityType="Self.TBL_MUSTERILER" />
+          <EntitySet Name="TBL_SATISLAR" EntityType="Self.TBL_SATISLAR" />
+          <AssociationSet Name="FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR" Association="Self.FK_TBL_MEHSULLAR_TBL_KATEQORIYALAR">
+            <End Role="TBL_KATEQORIYALAR" EntitySet="TBL_KATEQORIYALAR" />
+            <End Role="TBL_MEHSULLAR" EntitySet="TBL_MEHSULLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MEHSULLAR" Association="Self.FK_TBL_SATISLAR_TBL_MEHSULLAR">
+            <End Role="TBL_MEHSULLAR" EntitySet="TBL_MEHSULLAR" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MUSTERILER" Association="Self.FK_TBL_SATISLAR_TBL_MUSTERILER">
+            <End Role="TBL_MUSTERILER" EntitySet="TBL_MUSTERILER" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockProjectMVCModelStoreContainer" CdmEntityContainer="StockProjectMVCEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StockProjectMVCModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_KATEQORIYALAR">
+            <EntityTypeMapping TypeName="StockProjectMVCModel.TBL_KATEQORIYALAR">
+              <MappingFragment StoreEntitySet="TBL_KATEQORIYALAR">
+                <ScalarProperty Name="KATEQORIYAID" ColumnName="KATEQORIYAID" />
+                <ScalarProperty Name="KATEQORIYAAD" ColumnName="KATEQORIYAAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MEHSULLAR">
+            <EntityTypeMapping TypeName="StockProjectMVCModel.TBL_MEHSULLAR">
+              <MappingFragment StoreEntitySet="TBL_MEHSULLAR">
+                <ScalarProperty Name="MEHSULID" ColumnName="MEHSULID" />
+                <ScalarProperty Name="MEHSULAD" ColumnName="MEHSULAD" />
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="MEHSULKATEQORIYA" ColumnName="MEHSULKATEQORIYA" />
+                <ScalarProperty Name="QIYMET" ColumnName="QIYMET" />
+                <ScalarProperty Name="STOK" ColumnName="STOK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MUSTERILER">
+            <EntityTypeMapping TypeName="StockProjectMVCModel.TBL_MUSTERILER">
+              <MappingFragment StoreEntitySet="TBL_MUSTERILER">
+                <ScalarProperty Name="MUSTERIID" ColumnName="MUSTERIID" />
+                <ScalarProperty Name="MUSTERIAD" ColumnName="MUSTERIAD" />
+                <ScalarProperty Name="MUSTERISOYAD" ColumnName="MUSTERISOYAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SATISLAR">
+            <EntityTypeMapping TypeName="StockProjectMVCModel.TBL_SATISLAR">
+              <MappingFragment StoreEntitySet="TBL_SATISLAR">
+                <ScalarProperty Name="SATISID" ColumnName="SATISID" />
+                <ScalarProperty Name="MEHSUL" ColumnName="MEHSUL" />
+                <ScalarProperty Name="MUSTERI" ColumnName="MUSTERI" />
+                <ScalarProperty Name="EDED" ColumnName="EDED" />
+                <ScalarProperty Name="QIYMET" ColumnName="QIYMET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
