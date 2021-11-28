@@ -1,0 +1,31 @@
+﻿@using Stock_MVC.Models.Entity
+@model List<TBL_MEHSULLAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>ADI</th>
+        <th>MARKASI</th>
+        <th>KATEQORİYA</th>
+        <th>QİYMƏT</th>
+        <th>STOK</th>
+    </tr>
+    <tbody>
+            @foreach(var mehsul in Model)
+            {
+                <tr>
+                    <th>@mehsul.MEHSULID</th>
+                    <td>@mehsul.MEHSULAD</td>
+                    <td>@mehsul.MARKA</td>
+                    <td>@mehsul.MEHSULKATEQORIYA</td>
+                    <td>@mehsul.QIYMET</td>
+                    <td>@mehsul.STOK</td>
+                </tr>
+            }
+    </tbody>
+</table>
+
