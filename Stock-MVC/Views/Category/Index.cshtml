@@ -1,8 +1,26 @@
-﻿
+﻿@using Stock_MVC.Models.Entity
+@model List<TBL_KATEQORIYALAR> 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Bura Kateqoriyalarin listi olacaq</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>KATEQORİYA ID</th>
+        <th>KATEQORİYA AD</th>
+    </tr>
+
+    <tbody>
+        @foreach (var ktgr in Model) 
+        {
+        <tr>
+            <th>@ktgr.KATEQORIYAID</th>
+            <td>@ktgr.KATEQORIYAAD</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
 
