@@ -1,0 +1,26 @@
+﻿@using Stock_MVC.Models.Entity
+@model List<TBL_MUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+    </tr>
+
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <th>@customer.MUSTERIID</th>
+                <td>@customer.MUSTERIAD</td>
+                <td>@customer.MUSTERISOYAD</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
