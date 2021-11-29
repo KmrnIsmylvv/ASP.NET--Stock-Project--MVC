@@ -13,19 +13,24 @@
         <th>KATEQORİYA</th>
         <th>QİYMƏT</th>
         <th>STOK</th>
+        <th>SİL</th>
+        <th>GÜNCƏLLƏ</th>
     </tr>
     <tbody>
             @foreach(var mehsul in Model)
             {
-                <tr>
-                    <th>@mehsul.MEHSULID</th> 
-                    <td>@mehsul.MEHSULAD</td>
-                    <td>@mehsul.MARKA</td>
-                    <td>@mehsul.MEHSULKATEQORIYA</td>
-                    <td>@mehsul.QIYMET</td>
-                    <td>@mehsul.STOK</td>
-                </tr>
+        <tr>
+            <th>@mehsul.MEHSULID</th>
+            <td>@mehsul.MEHSULAD</td>
+            <td>@mehsul.MARKA</td>
+            <td>@mehsul.MEHSULKATEQORIYA</td>
+            <td>@mehsul.QIYMET</td>
+            <td>@mehsul.STOK</td>
+            <td><a href="/Product/SIL/@mehsul.MEHSULID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Product/GUNCELLE/@mehsul.MEHSULID" class="btn btn-success">GÜNCƏLLƏ</a></td>
+        </tr>
             }
     </tbody>
 </table>
+<a href="/Product/YENIMEHSUL/" class="btn btn-primary">YENİ MƏHSUL ƏLAVƏ ET</a>
 
