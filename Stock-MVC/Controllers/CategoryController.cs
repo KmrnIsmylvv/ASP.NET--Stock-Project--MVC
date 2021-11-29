@@ -16,5 +16,21 @@ namespace Stock_MVC.Controllers
             var deyerler = db.TBL_KATEQORIYALAR.ToList();
             return View(deyerler);
         }
+
+        [HttpGet]
+        public ActionResult YeniKateqoriya()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult YeniKateqoriya(TBL_KATEQORIYALAR p1)
+        {
+            db.TBL_KATEQORIYALAR.Add(p1);
+            db.SaveChanges();
+            return View();
+        }
     }
 }
