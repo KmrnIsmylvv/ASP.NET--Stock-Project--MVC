@@ -15,5 +15,19 @@ namespace Stock_MVC.Controllers
             var deyerler = db.TBL_MEHSULLAR.ToList();
             return View(deyerler);
         }
+
+        [HttpGet]
+        public ActionResult YeniMehsul()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniMehsul(TBL_MEHSULLAR p1)
+        {
+            db.TBL_MEHSULLAR.Add(p1);
+            db.SaveChanges();
+            return View();
+        }
     }
 }
