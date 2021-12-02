@@ -1,4 +1,4 @@
-﻿
+﻿@model Stock_MVC.Models.Entity.TBL_KATEQORIYALAR
 @{
     ViewBag.Title = "YeniMehsul";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -14,8 +14,8 @@
         <input type="text" name="MARKA" class="form-control" />
     </div>
     <div>
-        <label>Məhsul Kateqoriyası</label>
-        <input type="text" name="MEHSULKATEQORIYA" class="form-control" />
+        <label>Kateqoriya Seç</label>
+        @Html.DropDownListFor(m=>m.KATEQORIYAAD, (List<SelectListItem>)ViewBag.dgr,new { @class="form-control" })
     </div>
     <div>
         <label>Qiymət</label>

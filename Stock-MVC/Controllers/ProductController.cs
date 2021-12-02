@@ -19,6 +19,14 @@ namespace Stock_MVC.Controllers
         [HttpGet]
         public ActionResult YeniMehsul()
         {
+            List<SelectListItem> deyerler = (from i in db.TBL_KATEQORIYALAR.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.KATEQORIYAAD,
+                                                 Value = i.KATEQORIYAID.ToString()
+                                             }).ToList();
+            ViewBag.dgr = deyerler;
+
             return View();
         }
 
