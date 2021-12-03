@@ -33,9 +33,11 @@ namespace Stock_MVC.Controllers
         [HttpPost]
         public ActionResult YeniMehsul(TBL_MEHSULLAR p1)
         {
+            var ktg = db.TBL_KATEQORIYALAR.Where(m => m.KATEQORIYAID == p1.TBL_KATEQORIYALAR.KATEQORIYAID).FirstOrDefault();
+            p1.TBL_KATEQORIYALAR = ktg;
             db.TBL_MEHSULLAR.Add(p1);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
