@@ -32,5 +32,13 @@ namespace Stock_MVC.Controllers
             db.SaveChanges();
             return View();
         }
+
+        public ActionResult SIL(int id)
+        {
+            var kateqoriya = db.TBL_KATEQORIYALAR.Find(id);
+            db.TBL_KATEQORIYALAR.Remove(kateqoriya);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
