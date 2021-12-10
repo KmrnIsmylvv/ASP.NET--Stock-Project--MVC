@@ -30,5 +30,13 @@ namespace Stock_MVC.Controllers
             db.SaveChanges();
             return View();
         }
+
+        public ActionResult SIL(int id)
+        {
+            var musteri = db.TBL_MUSTERILER.Find(id);
+            db.TBL_MUSTERILER.Remove(musteri);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
