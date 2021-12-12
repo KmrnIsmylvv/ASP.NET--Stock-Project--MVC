@@ -40,5 +40,11 @@ namespace Stock_MVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult KateqoriyaGetir(int id)
+        {
+            var ktgr = db.TBL_KATEQORIYALAR.Find(id);
+            return View("KateqoriyaGetir", ktgr);
+        }
     }
 }

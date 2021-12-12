@@ -1,0 +1,19 @@
+﻿@model Stock_MVC.Models.Entity.TBL_KATEQORIYALAR
+@{
+    ViewBag.Title = "KateqoriyaGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Kateqoriya", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.KATEQORIYAID)
+        @Html.TextBoxFor(m=> m.KATEQORIYAID, new { @class="form-control" })
+        <br />
+        @Html.LabelFor(m=> m.KATEQORIYAAD)
+        @Html.TextBoxFor(m=> m.KATEQORIYAAD, new { @class="form-control"})
+    </div>
+
+    <div class="btn btn-info">Güncəllə</div>
+}
+
