@@ -46,5 +46,13 @@ namespace Stock_MVC.Controllers
             var ktgr = db.TBL_KATEQORIYALAR.Find(id);
             return View("KateqoriyaGetir", ktgr);
         }
+        
+        public ActionResult Guncelle(TBL_KATEQORIYALAR p1)
+        {
+            var ktg = db.TBL_KATEQORIYALAR.Find(p1.KATEQORIYAID);
+            ktg.KATEQORIYAAD = p1.KATEQORIYAAD;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
