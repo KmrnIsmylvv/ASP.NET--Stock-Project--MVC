@@ -51,6 +51,6 @@ namespace Stock_MVC.Controllers
             musteri.MUSTERISOYAD = p1.MUSTERISOYAD;
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
     }
 }
