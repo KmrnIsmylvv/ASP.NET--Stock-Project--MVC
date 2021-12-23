@@ -28,6 +28,10 @@ namespace Stock_MVC.Controllers
         [HttpPost]
         public ActionResult YeniKateqoriya(TBL_KATEQORIYALAR p1)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniKateqoriya");
+            }
             db.TBL_KATEQORIYALAR.Add(p1);
             db.SaveChanges();
             return View();
