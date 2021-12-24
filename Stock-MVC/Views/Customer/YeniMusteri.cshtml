@@ -1,5 +1,5 @@
-﻿
-@{
+﻿@model Stock_MVC.Models.Entity.TBL_MUSTERILER
+@{ 
     ViewBag.Title = "YeniMusteri";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
@@ -7,7 +7,8 @@
 <form method="post" class="=form form-group">
     <div>
         <label>Müştəri Adı</label>
-        <input type="text" name="MUSTERIAD" class="form-control" />
+        @Html.TextBoxFor(m => m.MUSTERIID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new { @style = "color:red" })
     </div>
     <div>
         <label>Müştəri Soyadı</label>

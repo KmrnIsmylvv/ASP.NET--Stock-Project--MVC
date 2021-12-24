@@ -26,6 +26,10 @@ namespace Stock_MVC.Controllers
         [HttpPost]
         public ActionResult YeniMusteri(TBL_MUSTERILER p1)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniMusteri");
+            }
             db.TBL_MUSTERILER.Add(p1);
             db.SaveChanges();
             return View();
