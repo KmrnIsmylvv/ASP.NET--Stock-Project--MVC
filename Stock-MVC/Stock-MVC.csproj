@@ -229,6 +229,7 @@
     <Content Include="Views\Product\YeniMehsul.cshtml" />
     <Content Include="Views\Category\KateqoriyaGetir.cshtml" />
     <Content Include="Views\Customer\MusteriGetir.cshtml" />
+    <Content Include="Views\Product\MehsulGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

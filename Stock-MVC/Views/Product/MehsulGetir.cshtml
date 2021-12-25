@@ -1,0 +1,31 @@
+﻿@model Stock_MVC.Models.Entity.TBL_MEHSULLAR
+@{
+    ViewBag.Title = "MehsulGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Product", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.MEHSULID)
+        @Html.TextBoxFor(m => m.MEHSULID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MEHSULAD)
+        @Html.TextBoxFor(m => m.MEHSULAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MARKA)
+        @Html.TextBoxFor(m => m.MARKA, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MEHSULKATEQORIYA)
+        @Html.TextBoxFor(m => m.MEHSULKATEQORIYA, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.QIYMET)
+        @Html.TextBoxFor(m => m.QIYMET, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.STOK)
+        @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-info">Güncəllə</button>
+    </div>
+}

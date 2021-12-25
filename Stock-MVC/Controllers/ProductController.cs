@@ -47,5 +47,11 @@ namespace Stock_MVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult MehsulGetir(int id)
+        {
+            var mehsul = db.TBL_MEHSULLAR.Find(id);
+            return View("MehsulGetir", mehsul);
+        }
     }
 }
