@@ -51,6 +51,15 @@ namespace Stock_MVC.Controllers
         public ActionResult MehsulGetir(int id)
         {
             var mehsul = db.TBL_MEHSULLAR.Find(id);
+
+            List<SelectListItem> deyerler = (from i in db.TBL_KATEQORIYALAR.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.KATEQORIYAAD,
+                                                 Value = i.KATEQORIYAID.ToString()
+                                             }).ToList();
+            ViewBag.dgr = deyerler;
+
             return View("MehsulGetir", mehsul);
         }
     }
