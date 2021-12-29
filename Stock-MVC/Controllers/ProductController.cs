@@ -62,5 +62,17 @@ namespace Stock_MVC.Controllers
 
             return View("MehsulGetir", mehsul);
         }
+
+        public ActionResult Guncelle(TBL_MEHSULLAR p)
+        {
+            var mehsul = db.TBL_MEHSULLAR.Find(p.MEHSULID);
+            mehsul.MEHSULAD = p.MEHSULAD;
+            mehsul.MARKA = p.MARKA;
+            mehsul.STOK = p.STOK;
+            mehsul.QIYMET = p.QIYMET;
+           // mehsul.MEHSULKATEQORIYA = p.MEHSULKATEQORIYA;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
