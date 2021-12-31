@@ -70,8 +70,7 @@ namespace Stock_MVC.Controllers
             mehsul.MARKA = p.MARKA;
             mehsul.STOK = p.STOK;
             mehsul.QIYMET = p.QIYMET;
-            // mehsul.MEHSULKATEQORIYA = p.MEHSULKATEQORIYA;
-            var ktg = db.TBL_KATEQORIYALAR.Where(m => m.KATEQORIYAID 
+            var ktg = db.TBL_KATEQORIYALAR.Where(m => m.KATEQORIYAID
                 == p.TBL_KATEQORIYALAR.KATEQORIYAID).FirstOrDefault();
             mehsul.MEHSULKATEQORIYA = ktg.KATEQORIYAID;
             db.SaveChanges();
