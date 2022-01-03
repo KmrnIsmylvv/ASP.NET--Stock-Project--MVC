@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
+using PagedList.Mvc;
 using System.Web.Mvc;
 using Stock_MVC.Models.Entity;
 namespace Stock_MVC.Controllers
@@ -11,9 +13,10 @@ namespace Stock_MVC.Controllers
         // GET: Category
 
         StockProjectMVCEntities db = new StockProjectMVCEntities();
-        public ActionResult Index()
+        public ActionResult Index(int sehife = 1)
         {
-            var deyerler = db.TBL_KATEQORIYALAR.ToList();
+            //var deyerler = db.TBL_KATEQORIYALAR.ToList();
+            var deyerler = db.TBL_KATEQORIYALAR.ToList().ToPagedList(sehife, 4);
             return View(deyerler);
         }
 
@@ -50,7 +53,7 @@ namespace Stock_MVC.Controllers
             var ktgr = db.TBL_KATEQORIYALAR.Find(id);
             return View("KateqoriyaGetir", ktgr);
         }
-        
+
         public ActionResult Guncelle(TBL_KATEQORIYALAR p1)
         {
             var ktg = db.TBL_KATEQORIYALAR.Find(p1.KATEQORIYAID);
