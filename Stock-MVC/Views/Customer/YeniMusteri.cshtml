@@ -1,5 +1,5 @@
 ﻿@model Stock_MVC.Models.Entity.TBL_MUSTERILER
-@{ 
+@{
     ViewBag.Title = "YeniMusteri";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
@@ -15,7 +15,12 @@
         <input type="text" name="MUSTERISOYAD" class="form-control" />
     </div>
     <div style="margin-top:15px">
-        <button class="btn btn-info">Müştəri Əlavə Et</button>
+        <button class="btn btn-info" id="btn1">Müştəri Əlavə Et</button>
     </div>
+    <script>
+        $('#btn1').click( () => {
+            alert('Müştəri Əlavə Olundu');
+        })
+    </script>
 </form>
 
