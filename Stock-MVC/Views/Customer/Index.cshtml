@@ -12,6 +12,7 @@
         <th>SOYAD</th>
         <th>SİL</th>
         <th>GÜNCƏLLƏ</th>
+        <th>ALERT</th>
     </tr>
 
     <tbody>
@@ -23,6 +24,7 @@
                 <td>@customer.MUSTERISOYAD</td>
                 <td><a href="/Customer/SIL/@customer.MUSTERIID" class="btn btn-danger">SİL</a></td>
                 <td><a href="/Customer/MusteriGetir/@customer.MUSTERIID" class="btn btn-success">GÜNCƏLLƏ</a></td>
+                <td>@Html.ActionLink("SIL Button", "SIL", new { id=customer.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Silmək istədiyinizə əminsiniz?')" })</td>
             </tr>
         }
     </tbody>
