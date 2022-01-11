@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Model1">
+    Satış
+</button>
+<div class="modal" id="Model1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Ekranı</h2>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <label>Məhsul Adı</label>
+                    <input type="text" name="Mehsul" class="form-control" />
+                    <br />
+                    <label>Məhsul Markası</label>
+                    <input type="text" name="Marka" class="form-control" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
