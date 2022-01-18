@@ -1,4 +1,4 @@
-﻿
+﻿@model Stock_MVC.Models.Entity.TBL_SATISLAR
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -13,13 +13,19 @@
             <div class="modal-header">
                 <h2 class="modal-title">Satış Ekranı</h2>
             </div>
-            <form>
+            <form method="post" action="/Sales/YeniSatis">
                 <div class="modal-body">
                     <label>Məhsul Adı</label>
-                    <input type="text" name="Mehsul" class="form-control" />
+                    @Html.TextBoxFor(m => m.MEHSUL, new { @class = "form-control" })
                     <br />
                     <label>Məhsul Markası</label>
-                    <input type="text" name="Marka" class="form-control" />
+                    @Html.TextBoxFor(m => m.MUSTERI, new { @class = "form-control" })
+                    <label>Məhsul Sayı</label>
+                    @Html.TextBoxFor(m => m.EDED, new { @class = "form-control" })
+                    <label>Qiymət</label>
+                    @Html.TextBoxFor(m => m.QIYMET, new { @class = "form-control" })
+                    <br />
+                    <button class=" btn btn-info">Satış Et </button>
                 </div>
             </form>
         </div>
