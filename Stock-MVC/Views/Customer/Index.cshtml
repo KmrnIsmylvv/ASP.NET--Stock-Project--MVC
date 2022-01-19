@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    <p>
+        <b>Axtar</b>: @Html.TextBox("p")
+        <input type="submit" value="Axtar" />
+    </p>
+}
+
 <table class="table table-bordered">
     <tr>
         <th>ID</th>
@@ -24,7 +32,7 @@
                 <td>@customer.MUSTERISOYAD</td>
                 <td><a href="/Customer/SIL/@customer.MUSTERIID" class="btn btn-danger">SİL</a></td>
                 <td><a href="/Customer/MusteriGetir/@customer.MUSTERIID" class="btn btn-success">GÜNCƏLLƏ</a></td>
-                <td>@Html.ActionLink("SIL Button", "SIL", new { id=customer.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Silmək istədiyinizə əminsiniz?')" })</td>
+                <td>@Html.ActionLink("SIL Button", "SIL", new { id = customer.MUSTERIID }, new { @class = "btn btn-warning", onclick = "return confirm('Silmək istədiyinizə əminsiniz?')" })</td>
             </tr>
         }
     </tbody>

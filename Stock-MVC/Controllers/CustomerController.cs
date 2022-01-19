@@ -11,10 +11,19 @@ namespace Stock_MVC.Controllers
     {
         // GET: Customer
         StockProjectMVCEntities db = new StockProjectMVCEntities();
-        public ActionResult Index()
+        public ActionResult Index(string p)
         {
-            var deyerler = db.TBL_MUSTERILER.ToList();
-            return View(deyerler);
+
+            var deyerler = from d in db.TBL_MUSTERILER select d;
+
+            if (!string.IsNullOrEmpty(p))
+            {
+                deyerler = deyerler.Where(m => m.MUSTERIAD.Contains(p));
+            }
+
+            return View(deyerler.ToList());
+            //var deyerler = db.TBL_MUSTERILER.ToList();
+            //return View(deyerler);
         }
 
         [HttpGet]
